@@ -1,5 +1,5 @@
 const asyncHandler = require('../utils/asyncHandler')
-const { adminService } = require('../services')
+const { adminService, newsService } = require('../services')
 
 // Router: /api/admin/news
 // Method: POST
@@ -12,6 +12,12 @@ exports.newNews = asyncHandler(async (req, res, next) => {
 // Method: GET
 exports.allNews = asyncHandler(async (req, res, next) => {
     const response = await adminService.getNews()
+    res.status(200).json(response)
+})
+
+// Router: /api/admin/news/:id
+exports.oneNew = asyncHandler(async (req, res, next) => {
+    const response = await newsService.getNew(req.params.id)
     res.status(200).json(response)
 })
 
