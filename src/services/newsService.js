@@ -12,7 +12,7 @@ exports.getNews = async () => {
 // Description: Get news by id
 exports.getNew = async (newsId) => {
     const news = await News.findById(newsId)
-    if (!news) return new ErrorResponse('News not found', 404);
+    if (!news) throw new ErrorResponse('News not found', 404);
 
     return { success: true, data: news }
 }

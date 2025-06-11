@@ -28,7 +28,7 @@ exports.getConsultations = async () => {
 // Description: Get consultation by id
 exports.getConsultation = async (consultId) => {
     const consultation = await Consultation.findById(consultId)
-    if (!consultation) return new ErrorResponse('Consultation not found', 404);
+    if (!consultation) throw new ErrorResponse('Consultation not found', 404);
 
     return { success: true, data: consultation }
 }
@@ -44,7 +44,7 @@ exports.getCosts = async () => {
 // Description: Get cost by id
 exports.getCost = async (costId) => {
     const cost = await Cost.findById(costId)
-    if (!cost) return new ErrorResponse('Cost not found', 404);
+    if (!cost) throw new ErrorResponse('Cost not found', 404);
 
     return { success: true, data: cost }
 }
