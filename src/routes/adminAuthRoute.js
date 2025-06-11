@@ -4,8 +4,10 @@ const router = Router()
 const { login, changePassword } = require('../controllers/adminAuthController')
 // admin authorization
 const { verifyAdmin } = require('../middlewares/authMiddleware')
+// route limitter
+const { adminAuthLimiter, changePasswordLimiter } = require('../middlewares/rateLimiter')
 
-router.post('/auth', login)
-router.post('/change-password', verifyAdmin, changePassword)
+router.post('/auth', adminAuthLimiter, login)
+router.post('/change-password', changePasswordLimiter, verifyAdmin, changePassword)
 
 module.exports = router
