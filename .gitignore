@@ -1,3 +1,3 @@
 .env
 node_modules
-admin.json
+src/config/admin.json
