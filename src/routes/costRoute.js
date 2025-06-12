@@ -2,9 +2,7 @@ const { Router } = require('express')
 const router = Router()
 // controller
 const { newCost } = require('../controllers/costController')
-// validators
-const { costValidator } = require('../validators/costValidator')
 
-router.post('/cost', costValidator, newCost)
+router.post('/cost', newCost)
 
 module.exports = router

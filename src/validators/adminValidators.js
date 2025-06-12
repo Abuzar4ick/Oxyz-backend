@@ -12,7 +12,9 @@ exports.newsValidator = [
         .notEmpty().withMessage('News image is required'),
     (req, res, next) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty()) return res.status(400).json({ success: false, errors: errors.array() });
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ success: false, errors: errors.array() })
+        }
         next()
     }
 ]

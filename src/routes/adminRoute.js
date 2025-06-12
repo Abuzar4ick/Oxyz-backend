@@ -4,12 +4,10 @@ const router = Router()
 const { newNews, allNews, oneNew, allConsultations, oneConsultation, allCosts, oneCost, newLinks, allLinks } = require('../controllers/adminController')
 // image upload
 const upload = require('../utils/fileUpload')
-// validators
-const { newsValidator } = require('../validators/adminValidators')
 // admin authorization
 const { verifyAdmin } = require('../middlewares/authMiddleware')
 
-router.post('/news', verifyAdmin, newsValidator, upload.single('image'), newNews)
+router.post('/news', verifyAdmin, upload.single('image'), newNews)
 router.get('/news', verifyAdmin, allNews)
 router.get('/news/:id', verifyAdmin, oneNew)
 router.get('/consultations', verifyAdmin, allConsultations)
