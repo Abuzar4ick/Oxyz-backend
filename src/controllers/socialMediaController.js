@@ -1,5 +1,5 @@
 const { socialMediaService } = require('../services')
-const asyncHandler = requrie('../utils/asyncHandler')
+const asyncHandler = require('../utils/asyncHandler')
 
 // Router: /api/social-media
 // Method: GET
