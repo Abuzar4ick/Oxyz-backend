@@ -62,10 +62,14 @@ exports.getCost = async (costId) => {
 exports.createLinks = async (links) => {
     const { whatsapp, telegram, instagram, facebook } = links
     const oldLinks = await SocialMedia.findOne()
-    if (oldLinks) await SocialMedia.findByIdAndUpdate(oldLinks._id, { whatsapp, telegram, instagram, facebook })
-        await SocialMedia.create({ whatsapp, telegram, instagram, facebook });
+    
+    if (oldLinks) {
+        await SocialMedia.findByIdAndUpdate(oldLinks._id, { whatsapp, telegram, instagram, facebook })
+    } else {
+        await SocialMedia.create({ whatsapp, telegram, instagram, facebook })
+    }
 
-    return { success: true, message: 'New social media links created successfully' } 
+    return { success: true, message: 'Social media links saved successfully' } 
 }
 
 // Router: /api/admin/social-media
