@@ -61,7 +61,7 @@ exports.getCost = async (costId) => {
 // Description: Create all social-media links
 exports.createLinks = async (links) => {
     const { whatsapp, telegram, instagram, facebook } = links
-    const oldLinks = await SocialMedia.findOne()
+    const oldLinks = await SocialMedia.find()
     
     if (oldLinks) {
         await SocialMedia.findByIdAndUpdate(oldLinks._id, { whatsapp, telegram, instagram, facebook })

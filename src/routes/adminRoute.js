@@ -14,7 +14,7 @@ router.get('/consultations', verifyAdmin, allConsultations)
 router.get('/consultations/:id', verifyAdmin, oneConsultation)
 router.get('/costs', verifyAdmin, allCosts)
 router.get('/costs/:id', verifyAdmin, oneCost)
-router.post('/social-media', verifyAdmin, newLinks)
+router.post('/social-media', upload.none(), verifyAdmin, newLinks)
 router.get('/social-media', verifyAdmin, allLinks)
 
 module.exports = router

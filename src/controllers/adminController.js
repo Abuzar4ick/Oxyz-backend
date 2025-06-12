@@ -52,6 +52,7 @@ exports.oneCost = asyncHandler(async (req, res, next) => {
 // Router: /api/admin/social-media
 // Method: POST
 exports.newLinks = asyncHandler(async (req, res, next) => {
+    console.log(req.body)
     const response = await adminService.createLinks(req.body)
     res.status(201).json(response)
 })
