@@ -1,4 +1,4 @@
-const { News, Consultation, Cost } = require('../models')
+const { News, Consultation, Cost, SocialMedia } = require('../models')
 const ErrorResponse = require('../utils/errorResponse')
 
 // Router: /api/admin/news
@@ -55,4 +55,22 @@ exports.getCost = async (costId) => {
     if (!cost) throw new ErrorResponse('Cost not found', 404);
 
     return { success: true, data: cost }
+}
+
+// Router: /api/admin/social-media
+// Description: Create all social-media links
+exports.createLinks = async (links) => {
+    const { whatsapp, telegram, instagram, facebook } = links
+    const oldLinks = await SocialMedia.findOne()
+    if (oldLinks) await SocialMedia.findByIdAndUpdate(oldLinks._id, { whatsapp, telegram, instagram, facebook })
+        await SocialMedia.create({ whatsapp, telegram, instagram, facebook });
+
+    return { success: true, message: 'New social media links created successfully' } 
+}
+
+// Router: /api/admin/social-media
+// Description: Get all social-media links
+exports.getLinks = async () => {
+    const links = await SocialMedia.find()
+    return { success: true, data: links }
 }
