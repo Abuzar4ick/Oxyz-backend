@@ -3,16 +3,16 @@ const { model, Schema } = require("mongoose")
 const News = new Schema(
   {
     title: {
-      type: String,
-      required: [true, "Title of new is required"]
+      uz: { type: String, required: true },
+      ru: { type: String, required: true }
     },
     description: {
-      type: String,
-      required: [true, "Description of new is required"]
+      uz: { type: String, required: true },
+      ru: { type: String, required: true }
     },
     body: {
-      type: String,
-      required: [true, 'Main information is required']
+      uz: { type: String, required: true },
+      ru: { type: String, required: true }
     },
     image: {
       type: String,

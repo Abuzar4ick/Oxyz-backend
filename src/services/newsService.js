@@ -3,7 +3,7 @@ const ErrorResponse = require('../utils/errorResponse')
 
 // Router: /api/news
 // Description: Get all news
-exports.getNews = async () => {
+exports.getNews = async (req) => {
     const news = await News.find()
     return { success: true, data: news }
 }
