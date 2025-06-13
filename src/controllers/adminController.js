@@ -11,7 +11,8 @@ exports.newNews = asyncHandler(async (req, res, next) => {
 // Router: /api/admin/news/:id
 // Method: PUT
 exports.updateNews = asyncHandler(async (req, res, next) => {
-    const response = await adminService.updateNews(req.params.id, req.body, req.file.filename)
+    const image = req.file ? req.file.filename : req.body.existingImage
+    const response = await adminService.updateNews(req.params.id, req.body, image)
     res.status(200).json(response)
 })
 

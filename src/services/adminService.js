@@ -24,13 +24,13 @@ exports.updateNews = async (newsId, news, image) => {
         const imagePath = path.join(__dirname, '..', 'uploads', oldNews.image)
         if (fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath)
-        }
+        } 
     }
 
     const updatedNews = await News.findByIdAndUpdate(newsId, { title, description, body, image }, { new: true })
-
     return { success: true, message: 'News were successfully updated', data: updatedNews }
 }
+
 
 // Router: /api/admin/news/:id
 // Description: Delete news by id
