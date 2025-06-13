@@ -1,5 +1,7 @@
 const { News, Consultation, Cost, SocialMedia } = require('../models')
 const ErrorResponse = require('../utils/errorResponse')
+const fs = require('fs')
+const path = require('path')
 
 // Router: /api/admin/news
 // Description: Create news
@@ -8,6 +10,42 @@ exports.createNews = async (news, image) => {
     const newData = await News.create({ title, description, body, image })
 
     return { success: true, message: 'New news created successfully', data: newData }
+}
+
+// Router: /api/admin/news/:id
+// Description: Update news by id
+exports.updateNews = async (newsId, news, image) => {
+    const { title, description, body } = news
+
+    const oldNews = await News.findById(newsId)
+    if (!oldNews) throw new ErrorResponse('News not found', 404);
+
+    if (image && oldNews.image && oldNews.image !== image) {
+        const imagePath = path.join(__dirname, '..', 'uploads', oldNews.image)
+        if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath)
+        }
+    }
+
+    const updatedNews = await News.findByIdAndUpdate(newsId, { title, description, body, image }, { new: true })
+
+    return { success: true, message: 'News were successfully updated', data: updatedNews }
+}
+
+// Router: /api/admin/news/:id
+// Description: Delete news by id
+exports.deleteNews = async (newsId) => {
+    const deletedNews = await News.findByIdAndDelete(newsId)
+    if (!deletedNews) throw new ErrorResponse('News not found', 404);
+
+    if (deletedNews.image) {
+        const imagePath = path.join(__dirname, '..', 'uploads', deletedNews.image)
+        if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath)
+        }
+    }
+
+    return { success: true, message: 'News were deleted successfully' }
 }
 
 // Router: /api/admin/news
@@ -63,11 +101,12 @@ exports.createLinks = async (links) => {
     const { whatsapp, telegram, instagram, facebook } = links
     const oldLinks = await SocialMedia.find()
     
-    if (oldLinks) {
-        await SocialMedia.findByIdAndUpdate(oldLinks._id, { whatsapp, telegram, instagram, facebook })
+    if (oldLinks.length > 0) {
+        await SocialMedia.findByIdAndUpdate(oldLinks[0]._id, { whatsapp, telegram, instagram, facebook })
     } else {
         await SocialMedia.create({ whatsapp, telegram, instagram, facebook })
-    }
+    } 
+
 
     return { success: true, message: 'Social media links saved successfully' } 
 }

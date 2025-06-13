@@ -8,6 +8,20 @@ exports.newNews = asyncHandler(async (req, res, next) => {
     res.status(201).json(response)
 })
 
+// Router: /api/admin/news/:id
+// Method: PUT
+exports.updateNews = asyncHandler(async (req, res, next) => {
+    const response = await adminService.updateNews(req.params.id, req.body, req.file.filename)
+    res.status(200).json(response)
+})
+
+// Router: /api/admin/news/:id
+// Methdo: DELETE
+exports.deleteNews = asyncHandler(async (req, res, next) => {
+    const response = await adminService.deleteNews(req.params.id)
+    res.status(200).json(response)
+})
+
 // Router: /api/admin/news
 // Method: GET
 exports.allNews = asyncHandler(async (req, res, next) => {

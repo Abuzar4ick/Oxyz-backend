@@ -1,13 +1,15 @@
 const { Router } = require('express')
 const router = Router()
 // controller
-const { newNews, allNews, oneNew, allConsultations, oneConsultation, allCosts, oneCost, newLinks, allLinks } = require('../controllers/adminController')
+const { newNews, allNews, oneNew, allConsultations, oneConsultation, allCosts, oneCost, newLinks, allLinks, updateNews, deleteNews } = require('../controllers/adminController')
 // image upload
 const upload = require('../utils/fileUpload')
 // admin authorization
 const { verifyAdmin } = require('../middlewares/authMiddleware')
 
 router.post('/news', verifyAdmin, upload.single('image'), newNews)
+router.put('/news/:id', verifyAdmin, upload.single('image'), updateNews)
+router.delete('/news/:id', verifyAdmin, deleteNews)
 router.get('/news', verifyAdmin, allNews)
 router.get('/news/:id', verifyAdmin, oneNew)
 router.get('/consultations', verifyAdmin, allConsultations)
