@@ -3,19 +3,19 @@ const { model, Schema } = require('mongoose')
 const SocialMedia = new Schema({
     whatsapp: {
         type: String,
-        required: [true, 'Whatsapp link is required']
+        default: ''
     },
     telegram: {
         type: String,
-        requried: [true, 'Telegram link is required']
+        default: ''
     },
     facebook: {
         type: String,
-        required: [true, 'Facebook link is requried']
+        default: ''
     },
     instagram: {
         type: String,
-        required: [true, 'Instagram link is requried']
+        default: ''
     }
 })
 
