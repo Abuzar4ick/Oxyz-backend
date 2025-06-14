@@ -3,19 +3,19 @@ const { model, Schema } = require('mongoose')
 const SocialMedia = new Schema({
     whatsapp: {
         type: String,
-        default: ''
+        default: null
     },
     telegram: {
         type: String,
-        default: ''
+        default: null
     },
     facebook: {
         type: String,
-        default: ''
+        default: null
     },
     instagram: {
         type: String,
-        default: ''
+        default: null
     }
 })
 
