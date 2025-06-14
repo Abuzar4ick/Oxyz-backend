@@ -16,6 +16,14 @@ const SocialMedia = new Schema({
     instagram: {
         type: String,
         default: null
+    },
+    phone_number1: {
+        type: String,
+        default: null
+    },
+    phone_number2: {
+        type: String,
+        default: null
     }
 })
 

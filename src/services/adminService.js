@@ -98,17 +98,17 @@ exports.getCost = async (costId) => {
 // Router: /api/admin/social-media
 // Description: Create all social-media links
 exports.createLinks = async (links) => {
-    const { whatsapp, telegram, instagram, facebook } = links
+    const { whatsapp, telegram, instagram, facebook, phone_number1, phone_number2 } = links
     const oldLinks = await SocialMedia.find()
     
     if (oldLinks.length > 0) {
-        await SocialMedia.findByIdAndUpdate(oldLinks[0]._id, { whatsapp, telegram, instagram, facebook })
+        await SocialMedia.findByIdAndUpdate(oldLinks[0]._id, { whatsapp, telegram, instagram, facebook, phone_number1, phone_number2 })
     } else {
-        await SocialMedia.create({ whatsapp, telegram, instagram, facebook })
+        await SocialMedia.create({ whatsapp, telegram, instagram, facebook, phone_number1, phone_number2 })
     } 
 
 
-    return { success: true, message: 'Social media links saved successfully' } 
+    return { success: true, message: 'Social media links saved successfully' }
 }
 
 // Router: /api/admin/social-media
